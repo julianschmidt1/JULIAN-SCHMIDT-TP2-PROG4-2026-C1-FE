@@ -9,56 +9,86 @@
       <div class="form-grid">
         <div class="field">
           <label>Nombre</label>
+
           <input pInputText formControlName="firstName" placeholder="Ej: Juan" />
+
+          <small>Al menos 2 caracteres.</small>
         </div>
 
         <div class="field">
           <label>Apellido</label>
+
           <input pInputText formControlName="lastName" placeholder="Ej: Pérez" />
+
+          <small>Al menos 2 caracteres.</small>
         </div>
 
         <div class="field">
           <label>Correo electrónico</label>
+
           <input pInputText formControlName="email" placeholder="juan@email.com" />
+
+          <small>Se utilizará para iniciar sesión.</small>
         </div>
 
         <div class="field">
           <label>Usuario</label>
+
           <input pInputText formControlName="username" placeholder="juanperez" />
+
+          <small>Mínimo 3 caracteres. Debe ser único.</small>
         </div>
 
         <div class="field">
           <label>Contraseña</label>
+
           <p-password formControlName="password" [feedback]="false" [toggleMask]="true" />
+
+          <small>
+            Mínimo 8 caracteres, una letra mayúscula y un número.
+          </small>
         </div>
 
         <div class="field">
           <label>Repetir contraseña</label>
+
           <p-password formControlName="repeatPassword" [feedback]="false" [toggleMask]="true" />
+
+          <small>Debe coincidir con la contraseña.</small>
         </div>
 
         <div class="field">
           <label>Fecha de nacimiento</label>
+
           <input pInputText type="date" formControlName="birthDate" />
+
+          <small>Campo obligatorio.</small>
         </div>
 
         <div class="field">
           <label>Foto de perfil</label>
+
           <input type="file" accept="image/*" (change)="onFileSelected($event)" />
 
+          <small>
+            Seleccioná una imagen JPG, PNG o WEBP.
+          </small>
+
           @if (selectedFileName) {
-            <small>{{ selectedFileName }}</small>
+          <small class="selected-file">
+            {{ selectedFileName }}
+          </small>
           }
         </div>
       </div>
 
       <div class="field">
         <label>Descripción breve</label>
-        <textarea
-          pInputText
-          rows="4"
-          formControlName="description"
-          placeholder="Contá algo sobre vos"></textarea>
+
+        <textarea pInputText rows="4" formControlName="description" placeholder="Contá algo sobre vos">
+  </textarea>
+
+        <small>Hasta 300 caracteres.</small>
       </div>
 
       <button pButton type="submit">Registrarme</button>
