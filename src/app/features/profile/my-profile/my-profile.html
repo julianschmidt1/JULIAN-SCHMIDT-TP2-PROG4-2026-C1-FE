@@ -4,7 +4,7 @@
         <img class="avatar" [src]="user.profileImageUrl" [alt]="user.firstName" />
         <div class="profile-info">
             <span class="role">
-                {{ roleLabels[user.role] ?? user.role }}
+                {{ getRoleLabel(user.role) }}
             </span>
             <h1>{{ user.firstName }} {{ user.lastName }}</h1>
             <p class="username">@{{ user.username }}</p>

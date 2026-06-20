@@ -17,5 +17,9 @@ export class MyProfile {
   readonly roleLabels: Record<string, string> = {
     user: 'Usuario',
     administrator: 'Administrador',
-  };
+  } as const;
+
+  getRoleLabel(role: string): string {
+    return this.roleLabels[role as keyof typeof this.roleLabels] ?? role;
+  }
 }
