@@ -36,3 +36,30 @@
   min-height: calc(100vh - 64px);
   padding: 32px;
 }
+
+.user-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.user-name {
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.logout-button {
+  border: 1px solid var(--border);
+  background: rgb(31 36 48 / 0.8);
+  color: var(--text-primary);
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+
+  transition: 0.2s;
+
+  &:hover {
+    border-color: var(--brand-light);
+    color: var(--brand-light);
+  }
+}

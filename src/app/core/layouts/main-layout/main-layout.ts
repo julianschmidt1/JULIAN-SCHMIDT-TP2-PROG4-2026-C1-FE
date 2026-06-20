@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+
 import { AuthStorageService } from '../../services/auth-storage';
 
 @Component({
@@ -12,9 +13,10 @@ export class MainLayout {
   private readonly authStorage = inject(AuthStorageService);
   private readonly router = inject(Router);
 
+  readonly user = this.authStorage.getUser();
+
   logout(): void {
     this.authStorage.clear();
-
     void this.router.navigate(['/login']);
   }
 }

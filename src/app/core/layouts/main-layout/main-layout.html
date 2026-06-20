@@ -1,13 +1,20 @@
 <header class="app-header">
-  <a routerLink="/posts" class="brand">Red Social</a>
+  <a routerLink="/posts" class="brand">RED SOCIAL</a>
 
   <nav class="nav-links">
     <a routerLink="/posts" routerLinkActive="active">Publicaciones</a>
     <a routerLink="/profile" routerLinkActive="active">Mi perfil</a>
-    <button class="logout-button" (click)="logout()">
+  </nav>
+
+  <div class="user-actions">
+    @if (user) {
+      <span class="user-name">{{ user.firstName }}</span>
+    }
+
+    <button type="button" class="logout-button" (click)="logout()">
       Cerrar sesión
     </button>
-  </nav>
+  </div>
 </header>
 
 <main class="main-content">
