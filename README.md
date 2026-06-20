@@ -1,59 +1,67 @@
-# RedSocialFrontend
+# Red Social - Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.10.
+Frontend de la aplicación Red Social desarrollada con Angular para la materia Programación 4.
 
-## Development server
+## Stack
 
-To start a local development server, run:
+* Angular 21
+* TypeScript
+* SCSS
+* PrimeNG
+* PrimeIcons
+* Vercel
+
+## Sprint 1
+
+En este sprint se implementó la base visual y funcional del frontend.
+
+### Funcionalidades incluidas
+
+* Creación del proyecto Angular.
+* Configuración de rutas con lazy loading.
+* Layout para pantallas públicas.
+* Layout para pantallas privadas.
+* Pantalla de login.
+* Pantalla de registro.
+* Pantalla de publicaciones.
+* Pantalla de mi perfil.
+* Navegación entre pantallas.
+* Validaciones de formularios.
+* Login conectado al backend.
+* Registro conectado al backend.
+* Persistencia del usuario autenticado en localStorage.
+* AuthGuard para proteger rutas privadas.
+* GuestGuard para evitar acceder a login/registro estando autenticado.
+* Cierre de sesión.
+* Toasts para mensajes de error y feedback.
+* Favicon personalizado.
+* Título de página personalizado.
+* Diseño dark mode con estética vaporwave sutil.
+
+## Rutas principales
+
+* `/login`
+* `/register`
+* `/posts`
+* `/profile`
+
+## Ejecución local
 
 ```bash
-ng serve
+npm install
+npm run start
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+La aplicación corre por defecto en:
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+```text
+http://localhost:4200
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Backend
 
-```bash
-ng generate --help
+El frontend consume la API del backend NestJS mediante la URL configurada en:
+
+```text
+src/environments/environment.ts
 ```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
