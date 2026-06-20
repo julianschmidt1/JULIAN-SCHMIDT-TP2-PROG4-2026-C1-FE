@@ -1,0 +1,33 @@
+<div class="login-page">
+  <div class="login-card app-card">
+
+    <div class="brand">
+      <h1 class="text-gradient">RED SOCIAL</h1>
+      <p>Conectate con tus amigos.</p>
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="field">
+        <label>Usuario o correo electrónico</label>
+        <input pInputText formControlName="identifier" placeholder="Ingresá tu usuario o correo" />
+      </div>
+
+      <div class="field">
+        <label>Contraseña</label>
+        <p-password formControlName="password" placeholder="Ingresá tu contraseña" [feedback]="false"
+          [toggleMask]="true" />
+      </div>
+
+      <button pButton type="submit">
+        Iniciar sesión
+      </button>
+    </form>
+
+    <div class="footer">
+      <span>¿Todavía no tenés una cuenta?</span>
+      <a routerLink="/register">
+        Registrate
+      </a>
+    </div>
+  </div>
+</div>

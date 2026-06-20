@@ -1,0 +1,38 @@
+.app-header {
+  height: 64px;
+  padding: 0 32px;
+  background: rgb(18 21 29 / 0.85);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(14px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  font-weight: 900;
+  font-size: 20px;
+  letter-spacing: 6px;
+  color: var(--brand-light);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  a {
+    color: var(--text-secondary);
+    font-weight: 600;
+  }
+
+  a.active,
+  a:hover {
+    color: var(--brand-light);
+  }
+}
+
+.main-content {
+  min-height: calc(100vh - 64px);
+  padding: 32px;
+}

@@ -1,1 +1,77 @@
-/* You can add global styles to this file, and also import other style files */
+@use './styles/primeng.scss';
+@import 'primeicons/primeicons.css';
+
+:root {
+  /* Backgrounds */
+  --bg-primary: #0b0e14;
+  --bg-secondary: #12151d;
+  --surface: #212634;
+
+  /* Brand */
+  --brand: #0ea5a0;
+  --brand-light: #22d3d1;
+  --accent-purple: #8b5cf6;
+  --accent-pink: #ff4d9d;
+
+  /* Text */
+  --text-primary: #e6edf3;
+  --text-secondary: #a1a7b3;
+  --text-muted: #6b7280;
+
+  /* Borders */
+  --border: #2a3342;
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+
+  /* Shadows */
+  --shadow-soft: 0 16px 40px rgb(0 0 0 / 35%);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    sans-serif;
+  background:
+    radial-gradient(circle at top left, rgb(14 165 183 / 0.16), transparent 30%),
+    radial-gradient(circle at bottom right, rgb(244 114 182 / 0.12), transparent 28%),
+    var(--bg-primary);
+  color: var(--text-primary);
+}
+
+body {
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+.app-card {
+  background: linear-gradient(180deg, rgb(31 36 48 / 0.96), rgb(18 21 29 / 0.96));
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, var(--brand-light), var(--accent-purple), var(--accent-pink));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
