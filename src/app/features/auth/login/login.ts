@@ -42,12 +42,6 @@ export class Login {
       next: (user) => {
         this.authStorage.saveUser(user);
 
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Bienvenido',
-          detail: `¡Hola, ${user.firstName}!`,
-        });
-
         void this.router.navigate(['/posts']);
       },
       error: () => {
