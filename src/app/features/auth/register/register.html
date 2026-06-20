@@ -1,0 +1,72 @@
+<div class="register-page">
+  <div class="register-card app-card">
+    <div class="brand">
+      <h1 class="text-gradient">Crear cuenta</h1>
+      <p>Completá tus datos para sumarte a la red.</p>
+    </div>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div class="form-grid">
+        <div class="field">
+          <label>Nombre</label>
+          <input pInputText formControlName="firstName" placeholder="Ej: Juan" />
+        </div>
+
+        <div class="field">
+          <label>Apellido</label>
+          <input pInputText formControlName="lastName" placeholder="Ej: Pérez" />
+        </div>
+
+        <div class="field">
+          <label>Correo electrónico</label>
+          <input pInputText formControlName="email" placeholder="juan@email.com" />
+        </div>
+
+        <div class="field">
+          <label>Usuario</label>
+          <input pInputText formControlName="username" placeholder="juanperez" />
+        </div>
+
+        <div class="field">
+          <label>Contraseña</label>
+          <p-password formControlName="password" [feedback]="false" [toggleMask]="true" />
+        </div>
+
+        <div class="field">
+          <label>Repetir contraseña</label>
+          <p-password formControlName="repeatPassword" [feedback]="false" [toggleMask]="true" />
+        </div>
+
+        <div class="field">
+          <label>Fecha de nacimiento</label>
+          <input pInputText type="date" formControlName="birthDate" />
+        </div>
+
+        <div class="field">
+          <label>Foto de perfil</label>
+          <input type="file" accept="image/*" (change)="onFileSelected($event)" />
+
+          @if (selectedFileName) {
+            <small>{{ selectedFileName }}</small>
+          }
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Descripción breve</label>
+        <textarea
+          pInputText
+          rows="4"
+          formControlName="description"
+          placeholder="Contá algo sobre vos"></textarea>
+      </div>
+
+      <button pButton type="submit">Registrarme</button>
+    </form>
+
+    <div class="footer">
+      <span>¿Ya tenés cuenta?</span>
+      <a routerLink="/login">Iniciá sesión</a>
+    </div>
+  </div>
+</div>

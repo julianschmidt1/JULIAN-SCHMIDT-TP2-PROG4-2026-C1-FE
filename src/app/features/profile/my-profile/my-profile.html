@@ -1,0 +1,19 @@
+<section class="profile-page">
+    @if (user) {
+    <article class="profile-card app-card">
+        <img class="avatar" [src]="user.profileImageUrl" [alt]="user.firstName" />
+        <div class="profile-info">
+            <span class="role">
+                {{ getRoleLabel(user.role) }}
+            </span>
+            <h1>{{ user.firstName }} {{ user.lastName }}</h1>
+            <p class="username">@{{ user.username }}</p>
+            <p class="description">{{ user.description }}</p>
+            <div class="details">
+                <span>{{ user.email }}</span>
+                <span>Nacimiento: {{ user.birthDate | date: 'dd/MM/yyyy' }}</span>
+            </div>
+        </div>
+    </article>
+    }
+</section>

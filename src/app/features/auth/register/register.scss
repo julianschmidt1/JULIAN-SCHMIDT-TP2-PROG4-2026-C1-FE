@@ -1,0 +1,93 @@
+.register-page {
+  min-height: calc(100vh - 64px);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 32px;
+}
+
+.register-card {
+  width: min(900px, 100%);
+  padding: 48px;
+}
+
+.brand {
+  margin-bottom: 40px;
+  text-align: center;
+
+  h1 {
+    margin: 0;
+    font-size: 2.4rem;
+    letter-spacing: .15rem;
+  }
+
+  p {
+    margin-top: 12px;
+    color: var(--text-secondary);
+  }
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+label {
+  color: var(--text-secondary);
+  font-size: .9rem;
+  font-weight: 500;
+}
+
+small {
+  color: var(--brand-light);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.footer {
+  margin-top: 36px;
+
+  text-align: center;
+
+  color: var(--text-secondary);
+
+  a {
+    margin-left: 6px;
+    color: var(--brand-light);
+    font-weight: 600;
+
+    transition: .2s;
+
+    &:hover {
+      color: var(--accent-purple);
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .register-card {
+    padding: 32px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
