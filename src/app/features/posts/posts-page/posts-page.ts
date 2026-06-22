@@ -2,12 +2,10 @@ import { Component, inject, signal } from '@angular/core';
 import { PostsService } from '../posts.service.';
 import { PostResponse } from '../models/post-response';
 import { PostCardComponent } from '../components/post-card/post-card';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { InputText } from 'primeng/inputtext';
-import { ButtonDirective } from 'primeng/button';
-import { MessageService } from 'primeng/api';
-import { Dialog } from 'primeng/dialog';
+import { ReactiveFormsModule } from '@angular/forms';
 import { CreatePostComponent } from '../components/create-post/create-post';
+import { AuthStorageService } from '../../../core/services/auth-storage';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-posts-page',
@@ -23,6 +21,10 @@ import { CreatePostComponent } from '../components/create-post/create-post';
 export class PostsPage {
   private readonly postsService = inject(PostsService);
   readonly posts = signal<PostResponse[]>([]);
+  private readonly authStorage = inject(AuthStorageService);
+  private readonly messageService = inject(MessageService);
+  readonly currentUser = this.authStorage.getUser();
+  private readonly confirmationService = inject(ConfirmationService);
   loading = signal(false);
 
   ngOnInit(): void {
@@ -41,6 +43,50 @@ export class PostsPage {
             currentPost.id === updatedPost.id ? updatedPost : currentPost,
           ),
         );
+      },
+    });
+  }
+
+  canDeletePost(post: PostResponse): boolean {
+    if (!this.currentUser) {
+      return false;
+    }
+
+    return (
+      post.author.id === this.currentUser.id ||
+      this.currentUser.role === 'administrator'
+    );
+  }
+
+  onDeleteClicked(post: PostResponse): void {
+    this.confirmationService.confirm({
+      header: 'Eliminar publicación',
+      message: '¿Seguro que querés eliminar esta publicación?',
+      acceptLabel: 'Eliminar',
+      rejectLabel: 'Cancelar',
+      acceptButtonStyleClass: 'p-button-danger',
+      rejectButtonStyleClass: 'p-button-secondary',
+      accept: () => {
+        this.postsService.delete(post.id).subscribe({
+          next: () => {
+            this.posts.update((posts) =>
+              posts.filter((currentPost) => currentPost.id !== post.id),
+            );
+
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Éxito',
+              detail: 'La publicación fue eliminada.',
+            });
+          },
+          error: () => {
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Error',
+              detail: 'No se pudo eliminar la publicación.',
+            });
+          },
+        });
       },
     });
   }

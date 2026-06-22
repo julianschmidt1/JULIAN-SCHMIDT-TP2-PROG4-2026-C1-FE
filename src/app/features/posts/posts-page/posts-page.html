@@ -18,11 +18,12 @@
     <i class="pi pi-comments"></i>
     <h2>Todavía no hay publicaciones</h2>
     <p>Cuando alguien publique algo, lo vas a ver acá.</p>
-</div>
+  </div>
   } @else {
   <div class="posts-list">
     @for (post of posts(); track post.id) {
-    <app-post-card [post]="post" (likeClicked)="onLikeClicked($event)" />
+    <app-post-card [post]="post" [canDelete]="canDeletePost(post)" (likeClicked)="onLikeClicked($event)"
+      (deleteClicked)="onDeleteClicked($event)" />
     }
   </div>
   }

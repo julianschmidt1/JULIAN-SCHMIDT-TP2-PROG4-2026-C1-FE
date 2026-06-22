@@ -18,27 +18,22 @@ export class PostsService {
   private readonly apiUrl = `${environment.apiUrl}/posts`;
 
   findAll(query: GetPostsQuery = {}): Observable<PostResponse[]> {
+    const user = this.authStorage.getUser();
+
     let params = new HttpParams();
 
-    if (query.sort) {
-      params = params.set('sort', query.sort);
-    }
+    if (query.sort) params = params.set('sort', query.sort);
+    if (query.offset !== undefined) params = params.set('offset', query.offset);
+    if (query.limit !== undefined) params = params.set('limit', query.limit);
+    if (query.userId) params = params.set('userId', query.userId);
 
-    if (query.offset !== undefined) {
-      params = params.set('offset', query.offset);
-    }
-
-    if (query.limit !== undefined) {
-      params = params.set('limit', query.limit);
-    }
-
-    if (query.userId) {
-      params = params.set('userId', query.userId);
-    }
-
-    return this.http.get<PostResponse[]>(this.apiUrl, { params });
+    return this.http.get<PostResponse[]>(this.apiUrl, {
+      params,
+      headers: {
+        'x-user-id': user?.id ?? '',
+      },
+    });
   }
-
   create(formData: FormData): Observable<PostResponse> {
     const user = this.authStorage.getUser();
 

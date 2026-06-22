@@ -10,8 +10,13 @@ import { PostResponse } from '../../models/post-response';
 })
 export class PostCardComponent {
   readonly post = input.required<PostResponse>();
-
   readonly likeClicked = output<PostResponse>();
+  readonly deleteClicked = output<PostResponse>();
+  readonly canDelete = input<boolean>(false);
+
+  onDeleteClick(): void {
+    this.deleteClicked.emit(this.post());
+  }
 
   onLikeClick(): void {
     this.likeClicked.emit(this.post());

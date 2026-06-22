@@ -33,6 +33,13 @@
 
         {{ post().likes }}
       </button>
+
+      @if (canDelete()) {
+      <button type="button" class="delete-button" (click)="onDeleteClick()">
+        <i class="pi pi-trash"></i>
+        Eliminar
+      </button>
+      }
     </div>
   </div>
 </article>
