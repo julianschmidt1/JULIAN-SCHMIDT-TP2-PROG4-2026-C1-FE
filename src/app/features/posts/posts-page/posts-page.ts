@@ -26,6 +26,7 @@ export class PostsPage {
   readonly currentUser = this.authStorage.getUser();
   private readonly confirmationService = inject(ConfirmationService);
   loading = signal(false);
+  readonly sort = signal<'createdAt' | 'likes'>('createdAt');
 
   ngOnInit(): void {
     this.loadPosts();
@@ -91,25 +92,28 @@ export class PostsPage {
     });
   }
 
-  private loadPosts(): void {
+  loadPosts(): void {
     this.loading.set(true);
 
     this.postsService
       .findAll({
-        sort: 'createdAt',
+        sort: this.sort(),
         offset: 0,
         limit: 10,
       })
       .subscribe({
         next: (posts) => {
           this.posts.set(posts);
-          console.log({ posts });
-
           this.loading.set(false);
         },
         error: () => {
           this.loading.set(false);
         },
       });
+  }
+
+  changeSort(sort: 'createdAt' | 'likes'): void {
+    this.sort.set(sort);
+    this.loadPosts();
   }
 }

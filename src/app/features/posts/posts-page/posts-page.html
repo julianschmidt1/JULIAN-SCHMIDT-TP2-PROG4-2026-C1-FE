@@ -7,11 +7,28 @@
   </div>
 
   <app-create-post (postCreated)="onPostCreated($event)" />
+  <div class="feed-toolbar app-card">
+    <span>Ordenar por</span>
+
+    <div class="sort-actions">
+      <button type="button" [class.active]="sort() === 'createdAt'" (click)="changeSort('createdAt')">
+        Más recientes
+      </button>
+
+      <button type="button" [class.active]="sort() === 'likes'" (click)="changeSort('likes')">
+        Más likes
+      </button>
+    </div>
+  </div>
+
 
   @if (loading()) {
   <div class="empty-state app-card">
     <i class="pi pi-spin pi-spinner"></i>
+
     <h2>Cargando publicaciones...</h2>
+
+    <p>Esperá un momento mientras obtenemos el contenido.</p>
   </div>
   } @else if (posts().length === 0) {
   <div class="empty-state app-card">
