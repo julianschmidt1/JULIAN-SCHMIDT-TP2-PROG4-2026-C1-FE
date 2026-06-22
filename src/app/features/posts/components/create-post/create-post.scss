@@ -1,0 +1,22 @@
+:host ::ng-deep .p-dialog .create-post-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+:host ::ng-deep .p-dialog .dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+:host ::ng-deep .p-dialog .dialog-actions button {
+  width: auto;
+}

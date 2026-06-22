@@ -2,15 +2,28 @@
   <div class="page-header">
     <div>
       <h1 class="text-gradient">Publicaciones</h1>
-      <p>Próximamente vas a poder ver, crear y reaccionar publicaciones.</p>
+      <p>Explorá las últimas publicaciones de la comunidad.</p>
     </div>
   </div>
 
+  <app-create-post (postCreated)="onPostCreated($event)" />
+
+  @if (loading()) {
+  <div class="empty-state app-card">
+    <i class="pi pi-spin pi-spinner"></i>
+    <h2>Cargando publicaciones...</h2>
+  </div>
+  } @else if (posts().length === 0) {
   <div class="empty-state app-card">
     <i class="pi pi-comments"></i>
     <h2>Todavía no hay publicaciones</h2>
-    <p>
-      En el próximo sprint vamos a cargar el feed, likes, paginación y baja lógica.
-    </p>
+    <p>Cuando alguien publique algo, lo vas a ver acá.</p>
+</div>
+  } @else {
+  <div class="posts-list">
+    @for (post of posts(); track post.id) {
+    <app-post-card [post]="post" (likeClicked)="onLikeClicked($event)" />
+    }
   </div>
+  }
 </section>
