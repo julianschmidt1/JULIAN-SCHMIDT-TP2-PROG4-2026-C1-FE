@@ -38,6 +38,41 @@ En este sprint se implementó la base visual y funcional del frontend.
 * Título de página personalizado.
 * Diseño dark mode con estética vaporwave sutil.
 
+---
+
+## Sprint 2
+
+En este sprint se incorporó la funcionalidad principal de la red social, permitiendo la interacción con publicaciones y la visualización del perfil del usuario.
+
+### Funcionalidades incluidas
+
+#### Publicaciones
+
+* Listado de publicaciones obtenido desde el backend.
+* Ordenamiento por fecha (por defecto).
+* Ordenamiento por cantidad de me gusta.
+* Paginación mediante carga incremental.
+* Cada publicación implementada como componente independiente.
+* Creación de publicaciones mediante formulario modal.
+* Soporte para carga de imágenes.
+* Dar y quitar me gusta a publicaciones.
+* Eliminación de publicaciones propias.
+* Confirmación antes de eliminar una publicación.
+* Actualización dinámica del feed sin recargar la página.
+
+#### Perfil
+
+* Visualización de todos los datos del usuario autenticado.
+* Visualización de la foto de perfil.
+* Listado de las últimas tres publicaciones del usuario.
+
+#### Mejoras generales
+
+* Refactorización de componentes para mejorar la reutilización.
+* Uso de Signals para el manejo del estado de la interfaz.
+* Integración completa con los nuevos endpoints del backend.
+* Mejoras de estilos y consistencia visual entre pantallas.
+
 ## Rutas principales
 
 * `/login`
