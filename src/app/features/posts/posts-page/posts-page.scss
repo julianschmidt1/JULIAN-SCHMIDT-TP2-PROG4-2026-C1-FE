@@ -76,3 +76,28 @@
     line-height: 1.6;
   }
 }
+
+.load-more {
+  max-width: 760px;
+  margin: 24px auto 0;
+
+  display: flex;
+  justify-content: center;
+
+  button {
+    border: 1px solid var(--border);
+    background: rgb(31 36 48 / 0.8);
+    color: var(--text-primary);
+
+    padding: 12px 22px;
+    border-radius: var(--radius-md);
+
+    font-weight: 600;
+    cursor: pointer;
+
+    &:hover {
+      border-color: var(--brand-light);
+      color: var(--brand-light);
+    }
+  }
+}

@@ -27,6 +27,8 @@ export class PostsPage {
   private readonly confirmationService = inject(ConfirmationService);
   loading = signal(false);
   readonly sort = signal<'createdAt' | 'likes'>('createdAt');
+  readonly limit = 10;
+  readonly hasMorePosts = signal(true);
 
   ngOnInit(): void {
     this.loadPosts();
@@ -37,7 +39,11 @@ export class PostsPage {
   }
 
   onLikeClicked(post: PostResponse): void {
-    this.postsService.toggleLike(post.id).subscribe({
+    const request$ = post.likedByCurrentUser
+      ? this.postsService.unlike(post.id)
+      : this.postsService.like(post.id);
+
+    request$.subscribe({
       next: (updatedPost) => {
         this.posts.update((posts) =>
           posts.map((currentPost) =>
@@ -99,15 +105,31 @@ export class PostsPage {
       .findAll({
         sort: this.sort(),
         offset: 0,
-        limit: 10,
+        limit: this.limit,
       })
       .subscribe({
         next: (posts) => {
           this.posts.set(posts);
+          this.hasMorePosts.set(posts.length === this.limit);
           this.loading.set(false);
         },
         error: () => {
           this.loading.set(false);
+        },
+      });
+  }
+
+  loadMorePosts(): void {
+    this.postsService
+      .findAll({
+        sort: this.sort(),
+        offset: this.posts().length,
+        limit: this.limit,
+      })
+      .subscribe({
+        next: (newPosts) => {
+          this.posts.update((posts) => [...posts, ...newPosts]);
+          this.hasMorePosts.set(newPosts.length === this.limit);
         },
       });
   }

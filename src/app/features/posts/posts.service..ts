@@ -55,7 +55,7 @@ export class PostsService {
     });
   }
 
-  toggleLike(postId: string): Observable<PostResponse> {
+  like(postId: string): Observable<PostResponse> {
     const user = this.authStorage.getUser();
 
     return this.http.post<PostResponse>(
@@ -67,5 +67,15 @@ export class PostsService {
         },
       },
     );
+  }
+
+  unlike(postId: string): Observable<PostResponse> {
+    const user = this.authStorage.getUser();
+
+    return this.http.delete<PostResponse>(`${this.apiUrl}/${postId}/like`, {
+      headers: {
+        'x-user-id': user?.id ?? '',
+      },
+    });
   }
 }

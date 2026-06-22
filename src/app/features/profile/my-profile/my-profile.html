@@ -1,19 +1,49 @@
 <section class="profile-page">
-    @if (user) {
+  @if (user) {
+  <div class="profile-content">
     <article class="profile-card app-card">
-        <img class="avatar" [src]="user.profileImageUrl" [alt]="user.firstName" />
-        <div class="profile-info">
-            <span class="role">
-                {{ getRoleLabel(user.role) }}
-            </span>
-            <h1>{{ user.firstName }} {{ user.lastName }}</h1>
-            <p class="username">@{{ user.username }}</p>
-            <p class="description">{{ user.description }}</p>
-            <div class="details">
-                <span>{{ user.email }}</span>
-                <span>Nacimiento: {{ user.birthDate | date: 'dd/MM/yyyy' }}</span>
-            </div>
+      <img class="avatar" [src]="user.profileImageUrl" [alt]="user.firstName" />
+
+      <div class="profile-info">
+        <span class="role">{{ getRoleLabel(user.role) }}</span>
+
+        <h1>{{ user.firstName }} {{ user.lastName }}</h1>
+
+        <p class="username">@{{ user.username }}</p>
+
+        <p class="description">{{ user.description }}</p>
+
+        <div class="details">
+          <span>{{ user.email }}</span>
+          <span>Nacimiento: {{ user.birthDate | date: 'dd/MM/yyyy' }}</span>
         </div>
+      </div>
     </article>
-    }
+
+    <section class="latest-posts">
+      <div class="section-header">
+        <h2>Últimas publicaciones</h2>
+      </div>
+
+      @if (loadingPosts()) {
+      <div class="empty-state app-card">
+        <i class="pi pi-spin pi-spinner"></i>
+        <h3>Cargando publicaciones...</h3>
+      </div>
+      } @else if (latestPosts().length === 0) {
+      <div class="empty-state app-card">
+        <i class="pi pi-comments"></i>
+        <h3>Todavía no publicaste nada</h3>
+        <p>Cuando crees tu primera publicación aparecerá acá.</p>
+      </div>
+      } @else {
+      <div class="posts-list">
+        @for (post of latestPosts(); track post.id) {
+        <app-post-card [post]="post" [showActions]="false" />
+        }
+      </div>
+      }
+    </section>
+  </div>
+  }
 </section>

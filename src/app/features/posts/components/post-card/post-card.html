@@ -26,6 +26,7 @@
 
     <p>{{ post().description }}</p>
 
+    @if (showActions()) {
     <div class="post-actions">
       <button type="button" class="action-button" [class.is-liked]="post().likedByCurrentUser" (click)="onLikeClick()">
         <i class="pi" [class.pi-heart-fill]="post().likedByCurrentUser" [class.pi-heart]="!post().likedByCurrentUser">
@@ -41,5 +42,6 @@
       </button>
       }
     </div>
+    }
   </div>
 </article>

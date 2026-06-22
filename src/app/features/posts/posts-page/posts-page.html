@@ -43,5 +43,13 @@
       (deleteClicked)="onDeleteClicked($event)" />
     }
   </div>
+
+  @if (hasMorePosts()) {
+  <div class="load-more">
+    <button type="button" (click)="loadMorePosts()">
+      Cargar más
+    </button>
+  </div>
+  }
   }
 </section>

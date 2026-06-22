@@ -13,7 +13,8 @@ export class PostCardComponent {
   readonly likeClicked = output<PostResponse>();
   readonly deleteClicked = output<PostResponse>();
   readonly canDelete = input<boolean>(false);
-
+  readonly showActions = input(true);
+  
   onDeleteClick(): void {
     this.deleteClicked.emit(this.post());
   }
