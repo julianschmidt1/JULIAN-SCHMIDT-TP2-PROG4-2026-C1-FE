@@ -1,0 +1,41 @@
+<button pButton type="button" class="create-post-button" (click)="openCreateDialog()">
+    Crear publicación
+</button>
+
+<p-dialog header="Crear publicación" [(visible)]="createDialogVisible" [modal]="true" [draggable]="false"
+    [resizable]="false" [style]="{ width: 'min(720px, 95vw)' }">
+
+    <form class="create-post-form" [formGroup]="postForm" (ngSubmit)="createPost()">
+
+        <div class="field">
+            <label>Título</label>
+            <input pInputText formControlName="title" placeholder="Escribí un título" />
+            <small>Entre 3 y 100 caracteres.</small>
+        </div>
+
+        <div class="field">
+            <label>Descripción</label>
+            <textarea pInputText rows="4" formControlName="description" placeholder="¿Qué querés compartir?"></textarea>
+            <small>Entre 3 y 1000 caracteres.</small>
+        </div>
+
+        <div class="field">
+            <label>Imagen opcional</label>
+            <input type="file" accept="image/*" (change)="onFileSelected($event)" />
+
+            @if (selectedFileName) {
+            <small class="selected-file">{{ selectedFileName }}</small>
+            }
+        </div>
+
+        <div class="dialog-actions">
+            <button pButton type="button" class="secondary-button" (click)="closeCreateDialog()">
+                Cancelar
+            </button>
+
+            <button pButton type="submit">
+                Publicar
+            </button>
+        </div>
+    </form>
+</p-dialog>

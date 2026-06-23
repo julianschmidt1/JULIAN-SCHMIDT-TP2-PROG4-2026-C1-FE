@@ -1,0 +1,47 @@
+<article class="post-card app-card">
+  @if (post().imageUrl) {
+  <img class="post-image" [src]="post().imageUrl" [alt]="post().title" />
+  }
+
+  <div class="post-content">
+    <div class="post-meta">
+      <div class="post-author">
+        <img class="author-avatar" [src]="post().author.profileImageUrl" [alt]="post().author.username" />
+
+        <div>
+          <strong>
+            {{ post().author.firstName }} {{ post().author.lastName }}
+          </strong>
+
+          <span>@{{ post().author.username }}</span>
+        </div>
+      </div>
+
+      <span class="post-date">
+        {{ post().createdAt | date: 'dd/MM/yyyy HH:mm' }}
+      </span>
+    </div>
+
+    <h2>{{ post().title }}</h2>
+
+    <p>{{ post().description }}</p>
+
+    @if (showActions()) {
+    <div class="post-actions">
+      <button type="button" class="action-button" [class.is-liked]="post().likedByCurrentUser" (click)="onLikeClick()">
+        <i class="pi" [class.pi-heart-fill]="post().likedByCurrentUser" [class.pi-heart]="!post().likedByCurrentUser">
+        </i>
+
+        {{ post().likes }}
+      </button>
+
+      @if (canDelete()) {
+      <button type="button" class="delete-button" (click)="onDeleteClick()">
+        <i class="pi pi-trash"></i>
+        Eliminar
+      </button>
+      }
+    </div>
+    }
+  </div>
+</article>

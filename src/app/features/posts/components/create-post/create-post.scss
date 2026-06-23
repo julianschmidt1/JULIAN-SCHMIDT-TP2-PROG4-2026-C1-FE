@@ -1,0 +1,57 @@
+:host ::ng-deep .p-dialog .create-post-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+:host ::ng-deep .p-dialog .field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  label {
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  small {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+}
+
+:host ::ng-deep .p-dialog .dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+:host ::ng-deep .p-dialog .dialog-actions button {
+  width: auto;
+  min-width: 140px;
+}
+
+:host ::ng-deep .p-dialog input[type='file'] {
+  color: var(--text-secondary);
+}
+
+.selected-file {
+  color: var(--brand-light);
+  font-weight: 500;
+}
+
+.create-post-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto 1.5rem;
+}

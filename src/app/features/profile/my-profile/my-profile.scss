@@ -1,11 +1,18 @@
 .profile-page {
-  display: flex;
-  justify-content: center;
   padding: 48px 32px;
 }
 
-.profile-card {
+.profile-content {
   width: min(900px, 100%);
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.profile-card {
+  width: 100%;
   padding: 40px;
 
   display: flex;
@@ -16,15 +23,10 @@
 .avatar {
   width: 180px;
   height: 180px;
-
   object-fit: cover;
-
   border-radius: 50%;
-
   border: 3px solid var(--brand);
-
   flex-shrink: 0;
-
   box-shadow: 0 0 30px rgb(14 165 183 / 20%);
 }
 
@@ -34,16 +36,14 @@
 
 .role {
   display: inline-block;
-
   margin-bottom: 12px;
   padding: 6px 14px;
 
   border-radius: 999px;
-
   background: rgb(14 165 183 / 15%);
   color: var(--brand-light);
 
-  font-size: .8rem;
+  font-size: 0.8rem;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -56,17 +56,13 @@
 .username {
   margin-top: 8px;
   margin-bottom: 28px;
-
   color: var(--text-secondary);
-
   font-size: 1.05rem;
 }
 
 .description {
   margin-bottom: 32px;
-
   color: var(--text-primary);
-
   line-height: 1.7;
 }
 
@@ -74,15 +70,53 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
-
   color: var(--text-secondary);
+}
+
+.latest-posts {
+  width: 100%;
+}
+
+.section-header {
+  margin-bottom: 24px;
+
+  h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: var(--text-primary);
+  }
+}
+
+.posts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.empty-state {
+  padding: 48px 32px;
+  text-align: center;
+
+  i {
+    font-size: 2.5rem;
+    color: var(--brand-light);
+    margin-bottom: 16px;
+  }
+
+  h3 {
+    margin: 0 0 8px;
+  }
+
+  p {
+    margin: 0;
+    color: var(--text-secondary);
+  }
 }
 
 @media (max-width: 768px) {
   .profile-card {
     flex-direction: column;
     align-items: center;
-
     text-align: center;
   }
 

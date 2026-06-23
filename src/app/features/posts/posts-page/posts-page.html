@@ -2,15 +2,54 @@
   <div class="page-header">
     <div>
       <h1 class="text-gradient">Publicaciones</h1>
-      <p>Próximamente vas a poder ver, crear y reaccionar publicaciones.</p>
+      <p>Explorá las últimas publicaciones de la comunidad.</p>
     </div>
   </div>
 
+  <app-create-post (postCreated)="onPostCreated($event)" />
+  <div class="feed-toolbar app-card">
+    <span>Ordenar por</span>
+
+    <div class="sort-actions">
+      <button type="button" [class.active]="sort() === 'createdAt'" (click)="changeSort('createdAt')">
+        Más recientes
+      </button>
+
+      <button type="button" [class.active]="sort() === 'likes'" (click)="changeSort('likes')">
+        Más likes
+      </button>
+    </div>
+  </div>
+
+
+  @if (loading()) {
+  <div class="empty-state app-card">
+    <i class="pi pi-spin pi-spinner"></i>
+
+    <h2>Cargando publicaciones...</h2>
+
+    <p>Esperá un momento mientras obtenemos el contenido.</p>
+  </div>
+  } @else if (posts().length === 0) {
   <div class="empty-state app-card">
     <i class="pi pi-comments"></i>
     <h2>Todavía no hay publicaciones</h2>
-    <p>
-      En el próximo sprint vamos a cargar el feed, likes, paginación y baja lógica.
-    </p>
+    <p>Cuando alguien publique algo, lo vas a ver acá.</p>
   </div>
+  } @else {
+  <div class="posts-list">
+    @for (post of posts(); track post.id) {
+    <app-post-card [post]="post" [canDelete]="canDeletePost(post)" (likeClicked)="onLikeClicked($event)"
+      (deleteClicked)="onDeleteClicked($event)" />
+    }
+  </div>
+
+  @if (hasMorePosts()) {
+  <div class="load-more">
+    <button type="button" (click)="loadMorePosts()">
+      Cargar más
+    </button>
+  </div>
+  }
+  }
 </section>
