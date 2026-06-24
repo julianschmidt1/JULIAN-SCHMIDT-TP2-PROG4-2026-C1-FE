@@ -1,23 +1,26 @@
 <section class="profile-page">
-  @if (user) {
+  @if (user()) {
   <div class="profile-content">
     <article class="profile-card app-card">
-      <img class="avatar" [src]="user.profileImageUrl" [alt]="user.firstName" />
+      <img class="avatar" [src]="user()?.profileImageUrl" [alt]="user()?.firstName" />
 
       <div class="profile-info">
-        <span class="role">{{ getRoleLabel(user.role) }}</span>
+        <span class="role">{{ getRoleLabel(user()!.role) }}</span>
 
-        <h1>{{ user.firstName }} {{ user.lastName }}</h1>
+        <h1>{{ user()?.firstName }} {{ user()?.lastName }}</h1>
 
-        <p class="username">@{{ user.username }}</p>
+        <p class="username">@{{ user()?.username }}</p>
 
-        <p class="description">{{ user.description }}</p>
+        <p class="description">{{ user()?.description }}</p>
 
         <div class="details">
-          <span>{{ user.email }}</span>
-          <span>Nacimiento: {{ user.birthDate | date: 'dd/MM/yyyy' }}</span>
+          <span>{{ user()?.email }}</span>
+          <span>Nacimiento: {{ user()?.birthDate | date: 'dd/MM/yyyy' }}</span>
         </div>
       </div>
+      <button class="edit-profile-button" pButton type="button" icon="pi pi-pencil" (click)="openEditDialog()">
+        Editar perfil
+      </button>
     </article>
 
     <section class="latest-posts">
@@ -47,3 +50,57 @@
   </div>
   }
 </section>
+
+<p-dialog header="Editar perfil" [visible]="editDialogVisible()" (visibleChange)="editDialogVisible.set($event)"
+  [modal]="true" [draggable]="false" [resizable]="false" [style]="{ width: 'min(720px, 95vw)' }">
+
+  <form class="edit-profile-form" [formGroup]="profileForm" (ngSubmit)="saveProfile()">
+    <div class="form-grid">
+      <div class="field">
+        <label>Nombre</label>
+        <input pInputText formControlName="firstName" />
+      </div>
+
+      <div class="field">
+        <label>Apellido</label>
+        <input pInputText formControlName="lastName" />
+      </div>
+
+      <div class="field">
+        <label>Usuario</label>
+        <input pInputText formControlName="username" />
+      </div>
+
+      <div class="field">
+        <label>Fecha de nacimiento</label>
+        <input pInputText type="date" formControlName="birthDate" />
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Descripción</label>
+      <textarea pInputText rows="4" formControlName="description">
+      </textarea>
+    </div>
+
+    <div class="field">
+      <label>Nueva foto de perfil</label>
+      <input type="file" accept="image/*" (change)="onFileSelected($event)" />
+
+      @if (selectedFileName) {
+      <small class="selected-file">{{ selectedFileName }}</small>
+      }
+      <small>Opcional. Si no seleccionás una imagen, se mantiene la actual.</small>
+    </div>
+
+    <div class="dialog-actions">
+      <button pButton type="button" class="secondary-button" (click)="closeEditDialog()">
+        Cancelar
+      </button>
+
+      <button pButton type="submit">
+        Guardar cambios
+      </button>
+    </div>
+  </form>
+</p-dialog>
