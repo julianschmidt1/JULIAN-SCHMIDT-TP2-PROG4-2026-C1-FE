@@ -53,6 +53,13 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'posts/:id',
+        loadComponent: () =>
+          import('./features/posts/post-detail/post-detail').then(
+            (m) => m.PostDetail,
+          ),
+      },
+      {
         path: 'profile',
         loadComponent: () =>
           import('./features/profile/my-profile/my-profile').then(

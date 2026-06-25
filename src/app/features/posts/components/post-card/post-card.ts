@@ -1,10 +1,11 @@
 import { DatePipe } from '@angular/common';
 import { Component, input, output } from '@angular/core';
 import { PostResponse } from '../../models/post-response';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-post-card',
-  imports: [DatePipe],
+imports: [DatePipe, RouterLink],
   templateUrl: './post-card.html',
   styleUrl: './post-card.scss',
 })

@@ -73,6 +73,46 @@ En este sprint se incorporó la funcionalidad principal de la red social, permit
 * Integración completa con los nuevos endpoints del backend.
 * Mejoras de estilos y consistencia visual entre pantallas.
 
+---
+
+## Sprint 3
+
+En este sprint se incorporó el sistema completo de autenticación mediante JWT y la gestión de comentarios sobre las publicaciones.
+
+### Funcionalidades incluidas
+
+#### Autenticación
+
+* Migración completa de autenticación basada en JWT.
+* Almacenamiento del token de acceso en localStorage.
+* Interceptor HTTP para enviar automáticamente el token en cada petición autenticada.
+* Validación automática del token al iniciar la aplicación.
+* Pantalla de carga durante la validación de la sesión.
+* Renovación de sesión mediante el endpoint de refresh.
+* Modal de aviso previo al vencimiento de la sesión.
+* Redirección automática al login cuando una petición devuelve 401.
+
+#### Publicaciones
+
+* Pantalla de detalle de publicación.
+* Visualización completa de una publicación individual.
+* Navegación desde el feed hacia el detalle.
+* Dar y quitar me gusta desde la vista de detalle.
+
+#### Comentarios
+
+* Visualización de comentarios asociados a una publicación.
+* Carga paginada mediante botón "Cargar más".
+* Creación de nuevos comentarios.
+* Edición de comentarios propios.
+* Indicador visual para comentarios editados.
+
+#### Mejoras generales
+
+* Separación de la funcionalidad de comentarios en una feature independiente.
+* Eliminación de autenticación basada en headers personalizados.
+* Integración completa con los nuevos endpoints JWT del backend.
+
 ## Rutas principales
 
 * `/login`
