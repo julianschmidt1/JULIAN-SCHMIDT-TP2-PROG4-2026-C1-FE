@@ -97,13 +97,14 @@ export class Register {
     formData.append('profileImage', this.selectedFile);
 
     this.authService.register(formData).subscribe({
-      next: (user) => {
-        this.authStorage.saveUser(user);
+      next: (response) => {
+        this.authStorage.saveUser(response.user);
+        this.authStorage.saveAccessToken(response.accessToken);
 
         this.messageService.add({
           severity: 'success',
           summary: 'Éxito',
-          detail: `¡Bienvenido, ${user.firstName}!`,
+          detail: `¡Bienvenido, ${response.user.firstName}!`,
         });
 
         void this.router.navigate(['/posts']);

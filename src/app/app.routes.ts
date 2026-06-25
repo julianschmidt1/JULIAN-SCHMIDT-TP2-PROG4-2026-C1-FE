@@ -9,6 +9,16 @@ export const routes: Routes = [
   // Public
   {
     path: '',
+    redirectTo: 'loading',
+    pathMatch: 'full',
+  },
+  {
+    path: 'loading',
+    loadComponent: () =>
+      import('./features/auth/loading/loading').then((m) => m.Loading),
+  },
+  {
+    path: '',
     component: AuthLayout,
     canActivate: [guestGuard],
     children: [
@@ -50,9 +60,5 @@ export const routes: Routes = [
           ),
       },
     ],
-  },
-  {
-    path: '**',
-    redirectTo: 'login',
   },
 ];

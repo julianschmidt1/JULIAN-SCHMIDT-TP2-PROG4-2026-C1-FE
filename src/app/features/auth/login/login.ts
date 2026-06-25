@@ -39,8 +39,9 @@ export class Login {
     }
 
     this.authService.login(this.loginForm.getRawValue()).subscribe({
-      next: (user) => {
-        this.authStorage.saveUser(user);
+      next: (response) => {
+        this.authStorage.saveUser(response.user);
+        this.authStorage.saveAccessToken(response.accessToken);
 
         void this.router.navigate(['/posts']);
       },

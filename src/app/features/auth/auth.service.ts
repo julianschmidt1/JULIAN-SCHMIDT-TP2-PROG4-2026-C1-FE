@@ -1,10 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
-
 import {
+  AuthResponse,
   LoginRequest,
-  RegisterRequest,
   UserResponse,
 } from './models';
 import { environment } from '../../../environments/environment';
@@ -17,15 +16,19 @@ export class AuthService {
 
   private readonly apiUrl = `${environment.apiUrl}/auth`;
 
-  login(request: LoginRequest): Observable<UserResponse> {
-    return this.http.post<UserResponse>(
+  login(request: LoginRequest): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(
       `${this.apiUrl}/login`,
       request,
     );
   }
 
-  register(request: FormData): Observable<UserResponse> {
-    return this.http.post<UserResponse>(
+  authorize(): Observable<UserResponse> {
+    return this.http.post<UserResponse>(`${this.apiUrl}/authorize`, {});
+  }
+
+  register(request: FormData): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(
       `${this.apiUrl}/register`,
       request,
     );
