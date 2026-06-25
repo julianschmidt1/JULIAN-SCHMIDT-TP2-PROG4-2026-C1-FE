@@ -32,10 +32,13 @@
 
       <p class="description">{{ currentPost.description }}</p>
 
-      <div class="likes">
-        <i class="pi pi-heart"></i>
-        <span>{{ currentPost.likes }} likes</span>
-      </div>
+      <button type="button" class="like-button" [class.is-liked]="currentPost.likedByCurrentUser"
+        (click)="onLikeClicked()">
+        <i class="pi" [class.pi-heart-fill]="currentPost.likedByCurrentUser"
+          [class.pi-heart]="!currentPost.likedByCurrentUser"></i>
+
+        <span>{{ currentPost.likes }}</span>
+      </button>
     </div>
   </article>
   } @else {
@@ -50,7 +53,7 @@
     <form class="comment-form" [formGroup]="commentForm" (ngSubmit)="createComment()">
       <textarea formControlName="message" rows="3" placeholder="Escribí un comentario..."></textarea>
 
-      <button type="submit" [disabled]="commentForm.invalid">
+      <button pButton type="submit" [disabled]="commentForm.invalid">
         Comentar
       </button>
     </form>
@@ -73,10 +76,36 @@
           </span>
         </div>
 
+        <!-- <p>{{ comment.message }}</p> -->
+
+        @if (editingCommentId() === comment.id) {
+        <form class="edit-comment-form" [formGroup]="editCommentForm" (ngSubmit)="saveEditedComment(comment)">
+          <textarea formControlName="message" rows="3"></textarea>
+
+          <div class="edit-comment-actions">
+            <button pButton type="button" (click)="cancelEditComment()">
+              Cancelar
+            </button>
+            <button pButton type="submit" [disabled]="editCommentForm.invalid">
+              Guardar
+            </button>
+
+          </div>
+        </form>
+        } @else {
         <p>{{ comment.message }}</p>
 
-        @if (comment.modified) {
-        <span class="edited-label">Editado</span>
+        <div class="comment-footer">
+          @if (comment.modified) {
+          <span class="edited-label">Editado</span>
+          }
+
+          @if (canEditComment(comment)) {
+          <button type="button" class="edit-comment-button" (click)="startEditComment(comment)">
+            Editar
+          </button>
+          }
+        </div>
         }
       </article>
       } @empty {
@@ -86,7 +115,7 @@
 
     @if (hasMoreComments()) {
     <div class="load-more-comments">
-      <button type="button" (click)="loadMoreComments()">
+      <button pButton type="button" (click)="loadMoreComments()">
         Cargar más
       </button>
     </div>

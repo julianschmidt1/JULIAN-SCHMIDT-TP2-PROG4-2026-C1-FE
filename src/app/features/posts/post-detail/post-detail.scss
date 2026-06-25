@@ -131,12 +131,12 @@ h1 {
 
 .comment-form button,
 .load-more-comments button {
-  justify-self: start;
   border: 0;
   border-radius: 999px;
   padding: 0.7rem 1.1rem;
   cursor: pointer;
   font-weight: 700;
+  max-width: 150px;
 }
 
 .comment-form button:disabled {
@@ -169,4 +169,74 @@ h1 {
 
 .load-more-comments {
   margin-top: 1rem;
+}
+
+.comment-footer {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.edit-comment-button {
+  border: 0;
+  background: transparent;
+  color: #67e8f9;
+  cursor: pointer;
+  font-weight: 700;
+  padding: 0;
+}
+
+.edit-comment-form {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.edit-comment-form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  resize: vertical;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 0.875rem;
+  padding: 0.875rem 1rem;
+  background: rgba(15, 23, 42, 0.85);
+  color: inherit;
+  font: inherit;
+}
+
+.edit-comment-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.edit-comment-actions button {
+  border: 0;
+  border-radius: 999px;
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  font-weight: 700;
+  max-width: 150px;
+}
+
+.edit-comment-actions button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+
+.like-button {
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 0;
+  border-radius: 999px;
+  padding: 0.65rem 1rem;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.like-button.is-liked {
+  color: #fb7185;
 }
