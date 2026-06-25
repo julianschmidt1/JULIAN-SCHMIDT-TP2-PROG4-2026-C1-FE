@@ -1,0 +1,172 @@
+.post-detail-page {
+  width: min(100%, 920px);
+  margin: 0 auto;
+  padding: 2rem 1.25rem;
+  box-sizing: border-box;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 1rem;
+  color: #67e8f9;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.post-detail-card,
+.comments-section {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.post-detail-card {
+  overflow: hidden;
+}
+
+.post-image {
+  display: block;
+  width: 100%;
+  max-height: 520px;
+  object-fit: cover;
+  border-radius: 1rem 1rem 0 0;
+}
+
+.post-body {
+  padding: 1.5rem;
+  display: grid;
+  gap: 1.25rem;
+}
+
+.post-meta,
+.comment-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.post-author,
+.comment-author {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.author-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+  object-fit: cover;
+}
+
+.comment-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  object-fit: cover;
+}
+
+.post-author span,
+.post-date,
+.comment-author span,
+.comment-date,
+.edited-label {
+  display: block;
+  opacity: 0.7;
+  font-size: 0.85rem;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.05;
+}
+
+.description {
+  margin: 0;
+  white-space: pre-wrap;
+  line-height: 1.75;
+  font-size: 1.05rem;
+}
+
+.likes {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0.85;
+}
+
+.state-card {
+  padding: 2rem;
+  text-align: center;
+}
+
+.comments-section {
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+  overflow: hidden;
+}
+
+.comments-section h2 {
+  margin: 0 0 1rem;
+}
+
+.comment-form {
+  display: grid;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.comment-form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  resize: vertical;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 0.875rem;
+  padding: 0.875rem 1rem;
+  background: rgba(15, 23, 42, 0.85);
+  color: inherit;
+  font: inherit;
+}
+
+.comment-form button,
+.load-more-comments button {
+  justify-self: start;
+  border: 0;
+  border-radius: 999px;
+  padding: 0.7rem 1.1rem;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.comment-form button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.comments-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.comment-card {
+  display: grid;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  background: rgba(15, 23, 42, 0.65);
+}
+
+.comment-card p {
+  margin: 0;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.empty-comments {
+  opacity: 0.75;
+}
+
+.load-more-comments {
+  margin-top: 1rem;
+}

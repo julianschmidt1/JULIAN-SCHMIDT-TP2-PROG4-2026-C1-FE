@@ -60,6 +60,7 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  margin-right: 8px;
 
   padding: 8px 0;
 
@@ -75,15 +76,17 @@
   color: var(--danger);
   font-weight: 700;
   cursor: pointer;
-  margin-left: 25px;
-
   display: inline-flex;
   align-items: center;
   gap: 8px;
-
   padding: 8px 0;
 
   &:hover {
     color: #fecdd3;
   }
+}
+
+.post-actions {
+  display: flex;
+  gap: 25px;
 }

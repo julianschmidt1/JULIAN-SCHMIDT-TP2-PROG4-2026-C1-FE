@@ -27,6 +27,10 @@ export class AuthService {
     return this.http.post<UserResponse>(`${this.apiUrl}/authorize`, {});
   }
 
+  refresh(): Observable<{ accessToken: string }> {
+    return this.http.post<{ accessToken: string }>(`${this.apiUrl}/refresh`, {});
+  }
+
   register(request: FormData): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(
       `${this.apiUrl}/register`,

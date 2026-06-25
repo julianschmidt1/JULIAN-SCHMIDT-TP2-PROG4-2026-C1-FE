@@ -1,0 +1,95 @@
+<section class="post-detail-page">
+  <a routerLink="/posts" class="back-link">← Volver a publicaciones</a>
+
+  @if (loading()) {
+  <div class="app-card state-card">
+    <i class="pi pi-spin pi-spinner"></i>
+    <p>Cargando publicación...</p>
+  </div>
+  } @else if (post(); as currentPost) {
+  <article class="post-detail-card app-card">
+    @if (currentPost.imageUrl) {
+    <img class="post-image" [src]="currentPost.imageUrl" [alt]="currentPost.title" />
+    }
+
+    <div class="post-body">
+      <div class="post-meta">
+        <div class="post-author">
+          <img class="author-avatar" [src]="currentPost.author.profileImageUrl" [alt]="currentPost.author.username" />
+
+          <div>
+            <strong>{{ currentPost.author.firstName }} {{ currentPost.author.lastName }}</strong>
+            <span>@{{ currentPost.author.username }}</span>
+          </div>
+        </div>
+
+        <span class="post-date">
+          {{ currentPost.createdAt | date: 'dd/MM/yyyy HH:mm' }}
+        </span>
+      </div>
+
+      <h1>{{ currentPost.title }}</h1>
+
+      <p class="description">{{ currentPost.description }}</p>
+
+      <div class="likes">
+        <i class="pi pi-heart"></i>
+        <span>{{ currentPost.likes }} likes</span>
+      </div>
+    </div>
+  </article>
+  } @else {
+  <div class="app-card state-card">
+    <p>No se encontró la publicación.</p>
+  </div>
+  }
+
+  <section class="comments-section app-card">
+    <h2>Comentarios</h2>
+
+    <form class="comment-form" [formGroup]="commentForm" (ngSubmit)="createComment()">
+      <textarea formControlName="message" rows="3" placeholder="Escribí un comentario..."></textarea>
+
+      <button type="submit" [disabled]="commentForm.invalid">
+        Comentar
+      </button>
+    </form>
+
+    <div class="comments-list">
+      @for (comment of comments(); track comment.id) {
+      <article class="comment-card">
+        <div class="comment-header">
+          <div class="comment-author">
+            <img class="comment-avatar" [src]="comment.author.profileImageUrl" [alt]="comment.author.username" />
+
+            <div>
+              <strong>{{ comment.author.firstName }} {{ comment.author.lastName }}</strong>
+              <span>@{{ comment.author.username }}</span>
+            </div>
+          </div>
+
+          <span class="comment-date">
+            {{ comment.createdAt | date: 'dd/MM/yyyy HH:mm' }}
+          </span>
+        </div>
+
+        <p>{{ comment.message }}</p>
+
+        @if (comment.modified) {
+        <span class="edited-label">Editado</span>
+        }
+      </article>
+      } @empty {
+      <p class="empty-comments">Todavía no hay comentarios.</p>
+      }
+    </div>
+
+    @if (hasMoreComments()) {
+    <div class="load-more-comments">
+      <button type="button" (click)="loadMoreComments()">
+        Cargar más
+      </button>
+    </div>
+    }
+  </section>
+</section>

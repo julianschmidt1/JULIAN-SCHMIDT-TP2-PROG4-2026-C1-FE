@@ -35,6 +35,11 @@
         {{ post().likes }}
       </button>
 
+      <a class="action-button" [routerLink]="['/posts', post().id]">
+        <i class="pi pi-eye"></i>
+        Ver
+      </a>
+
       @if (canDelete()) {
       <button type="button" class="delete-button" (click)="onDeleteClick()">
         <i class="pi pi-trash"></i>
