@@ -113,6 +113,39 @@ En este sprint se incorporó el sistema completo de autenticación mediante JWT 
 * Eliminación de autenticación basada en headers personalizados.
 * Integración completa con los nuevos endpoints JWT del backend.
 
+---
+
+## Sprint 4
+
+En este sprint se incorporaron las funcionalidades de administración del sistema y visualización de estadísticas.
+
+### Administración
+
+* Dashboard exclusivo para administradores.
+* Listado de usuarios registrados.
+* Alta de nuevos usuarios.
+* Selección de rol (usuario o administrador).
+* Soporte para carga de imagen de perfil al crear usuarios.
+* Alta lógica de usuarios.
+* Baja lógica de usuarios.
+* Mensaje específico para usuarios deshabilitados al intentar iniciar sesión.
+* Protección de rutas mediante AdminGuard.
+
+### Estadísticas
+
+* Dashboard de estadísticas exclusivo para administradores.
+* Gráfico de publicaciones por usuario.
+* Gráfico de comentarios por período.
+* Gráfico de comentarios por publicación.
+* Filtro por rango de fechas para todas las estadísticas.
+
+### Mejoras generales
+
+* Implementación de Progressive Web App (PWA).
+* Creación de 3 Pipes personalizadas.
+* Creación de 3 Directivas personalizadas.
+* Mejoras visuales y de experiencia de usuario para las pantallas administrativas.
+
 ## Rutas principales
 
 * `/login`
