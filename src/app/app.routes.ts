@@ -4,6 +4,7 @@ import { AuthLayout } from './core/layouts/auth-layout/auth-layout';
 import { MainLayout } from './core/layouts/main-layout/main-layout';
 import { authGuard } from './core/guards/auth-guard';
 import { guestGuard } from './core/guards/guest-guard';
+import { adminGuard } from './core/guards/admin-guard';
 
 export const routes: Routes = [
   // Public
@@ -64,6 +65,22 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./features/profile/my-profile/my-profile').then(
             (m) => m.MyProfile,
+          ),
+      },
+      {
+        path: 'dashboard/users',
+        canActivate: [adminGuard],
+        loadComponent: () =>
+          import('./features/dashboard/users-dashboard/users-dashboard').then(
+            (m) => m.UsersDashboard,
+          ),
+      },
+      {
+        path: 'dashboard/statistics',
+        canActivate: [adminGuard],
+        loadComponent: () =>
+          import('./features/dashboard/statistics-dashboard/statistics-dashboard').then(
+            (m) => m.StatisticsDashboard,
           ),
       },
     ],

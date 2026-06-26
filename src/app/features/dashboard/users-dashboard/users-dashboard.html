@@ -1,0 +1,143 @@
+<section class="users-dashboard">
+  <div class="dashboard-header">
+    <div>
+      <h1>Administración de usuarios</h1>
+      <p>Gestioná usuarios, roles y estados de acceso.</p>
+    </div>
+
+    <button style="width: 150px;" pButton type="button" (click)="openCreateUserDialog()">
+      Crear usuario
+    </button>
+  </div>
+
+  @if (loading()) {
+
+  <p>Cargando usuarios...</p>
+
+  } @else {
+
+  <table>
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Usuario</th>
+        <th>Email</th>
+        <th>Rol</th>
+        <th>Estado</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      @for (user of users(); track user.id) {
+
+      <tr>
+        <td>{{ user.firstName }} {{ user.lastName }}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.role }}</td>
+        <td>
+          {{ user.isActive ? 'Activo' : 'Deshabilitado' }}
+        </td>
+        <td class="actions">
+          @if (isCurrentUser(user)) {
+          <span class="current-user">Usuario actual</span>
+          } @else if (user.isActive) {
+          <button type="button" class="disable-button" (click)="disableUser(user)">
+            Deshabilitar
+          </button>
+          } @else {
+          <button type="button" class="restore-button" (click)="restoreUser(user)">
+            Habilitar
+          </button>
+          }
+        </td>
+      </tr>
+
+      }
+    </tbody>
+  </table>
+
+  }
+</section>
+
+
+<p-dialog header="Crear usuario" [visible]="createUserDialogVisible()"
+  (visibleChange)="createUserDialogVisible.set($event)" [modal]="true" [draggable]="false" [resizable]="false"
+  [style]="{ width: 'min(720px, 95vw)' }">
+  <form class="create-user-form" [formGroup]="createUserForm" (ngSubmit)="createUser()">
+    <div class="form-grid">
+      <div class="field">
+        <label>Nombre</label>
+        <input pInputText formControlName="firstName" />
+      </div>
+
+      <div class="field">
+        <label>Apellido</label>
+        <input pInputText formControlName="lastName" />
+      </div>
+
+      <div class="field">
+        <label>Email</label>
+        <input pInputText type="email" formControlName="email" />
+      </div>
+
+      <div class="field">
+        <label>Usuario</label>
+        <input pInputText formControlName="username" />
+      </div>
+
+      <div class="field">
+        <label>Contraseña</label>
+        <input pInputText type="password" formControlName="password" />
+      </div>
+
+      <div class="field">
+        <label>Fecha de nacimiento</label>
+        <input pInputText type="date" formControlName="birthDate" />
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Descripción</label>
+      <textarea pInputText rows="4" formControlName="description"></textarea>
+    </div>
+
+    <div class="field">
+      <label>Rol</label>
+
+      <div class="radio-group">
+        <label>
+          <input type="radio" formControlName="role" value="user" />
+          Usuario
+        </label>
+
+        <label>
+          <input type="radio" formControlName="role" value="administrator" />
+          Administrador
+        </label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Foto de perfil</label>
+      <input type="file" accept="image/*" (change)="onFileSelected($event)" />
+
+      @if (selectedFileName) {
+      <small class="selected-file">{{ selectedFileName }}</small>
+      }
+
+      <small>Obligatoria para crear el usuario.</small>
+    </div>
+
+    <div class="dialog-actions">
+      <button pButton type="button" class="secondary-button" (click)="closeCreateUserDialog()">
+        Cancelar
+      </button>
+
+      <button pButton type="submit" [disabled]="createUserForm.invalid || !selectedFile">
+        Crear usuario
+      </button>
+    </div>
+  </form>
+</p-dialog>

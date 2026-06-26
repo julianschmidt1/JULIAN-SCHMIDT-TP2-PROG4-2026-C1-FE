@@ -2,11 +2,13 @@ import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 import { AuthStorageService } from '../services/auth-storage';
 
-export const guestGuard: CanActivateFn = () => {
+export const adminGuard: CanActivateFn = () => {
   const authStorage = inject(AuthStorageService);
   const router = inject(Router);
 
-  if (!authStorage.isAuthenticated()) {
+  const user = authStorage.getUser();
+
+  if (user?.role === 'administrator') {
     return true;
   }
 

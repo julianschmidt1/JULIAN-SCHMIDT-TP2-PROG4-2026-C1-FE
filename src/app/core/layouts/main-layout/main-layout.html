@@ -4,11 +4,15 @@
   <nav class="nav-links">
     <a routerLink="/posts" routerLinkActive="active">Publicaciones</a>
     <a routerLink="/profile" routerLinkActive="active">Mi perfil</a>
+    @if (user?.role === 'administrator') {
+    <a routerLink="/dashboard/users" routerLinkActive="active">Usuarios</a>
+    <a routerLink="/dashboard/statistics" routerLinkActive="active">Estadísticas</a>
+    }
   </nav>
 
   <div class="user-actions">
     @if (user) {
-      <span class="user-name">{{ user.firstName }}</span>
+    <span class="user-name">{{ user.firstName }}</span>
     }
 
     <button type="button" class="logout-button" (click)="logout()">
