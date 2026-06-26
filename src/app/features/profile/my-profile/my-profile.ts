@@ -10,6 +10,7 @@ import { Dialog } from 'primeng/dialog';
 import { InputText } from 'primeng/inputtext';
 import { UsersService } from '../users';
 import { MessageService } from 'primeng/api';
+import { AutoFocusDirective } from '../../../shared/directives/auto-focus';
 
 
 @Component({
@@ -19,6 +20,7 @@ import { MessageService } from 'primeng/api';
     Dialog,
     InputText,
     ButtonDirective,
+    AutoFocusDirective,
   ],
   templateUrl: './my-profile.html',
   styleUrl: './my-profile.scss',

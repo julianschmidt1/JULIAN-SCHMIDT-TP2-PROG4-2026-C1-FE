@@ -8,10 +8,27 @@ import { MessageService } from 'primeng/api';
 import { Dialog } from 'primeng/dialog';
 import { InputText } from 'primeng/inputtext';
 import { ButtonDirective } from 'primeng/button';
+import { RoleLabelPipe } from '../../../shared/pipes/role-label-pipe';
+import { UserStatusPipe } from '../../../shared/pipes/user-status-pipe';
+import { FullNamePipe } from '../../../shared/pipes/full-name-pipe';
+import { HighlightOnHoverDirective } from '../../../shared/directives/highlight-on-hover';
+import { AutoFocusDirective } from '../../../shared/directives/auto-focus';
+import { RoleBadgeDirective } from '../../../shared/directives/role-badge';
 
 @Component({
   selector: 'app-users-dashboard',
-  imports: [ReactiveFormsModule, Dialog, InputText, ButtonDirective],
+  imports: [
+    ReactiveFormsModule,
+    Dialog,
+    InputText,
+    ButtonDirective,
+    RoleLabelPipe,
+    UserStatusPipe,
+    FullNamePipe,
+    HighlightOnHoverDirective,
+    AutoFocusDirective,
+    RoleBadgeDirective
+  ],
   templateUrl: './users-dashboard.html',
   styleUrl: './users-dashboard.scss',
 })

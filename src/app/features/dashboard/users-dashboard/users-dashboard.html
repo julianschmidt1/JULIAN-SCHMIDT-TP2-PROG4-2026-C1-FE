@@ -31,14 +31,16 @@
     <tbody>
       @for (user of users(); track user.id) {
 
-      <tr>
-        <td>{{ user.firstName }} {{ user.lastName }}</td>
+      <tr appHighlightOnHover>
+        <td>{{ user | fullName }}</td>
         <td>{{ user.username }}</td>
         <td>{{ user.email }}</td>
-        <td>{{ user.role }}</td>
         <td>
-          {{ user.isActive ? 'Activo' : 'Deshabilitado' }}
+          <span [appRoleBadge]="user.role">
+            {{ user.role | roleLabel }}
+          </span>
         </td>
+        <td>{{ user.isActive | userStatus }}</td>
         <td class="actions">
           @if (isCurrentUser(user)) {
           <span class="current-user">Usuario actual</span>
@@ -69,7 +71,7 @@
     <div class="form-grid">
       <div class="field">
         <label>Nombre</label>
-        <input pInputText formControlName="firstName" />
+        <input appAutoFocus pInputText formControlName="firstName" />
       </div>
 
       <div class="field">
