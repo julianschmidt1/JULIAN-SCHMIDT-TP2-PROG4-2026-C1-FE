@@ -45,11 +45,16 @@ export class Login {
 
         void this.router.navigate(['/posts']);
       },
-      error: () => {
+      error: (error) => {
+        const detail =
+          error?.error?.message === 'User account is disabled'
+            ? 'Tu usuario se encuentra deshabilitado.'
+            : 'Usuario o contraseña incorrectos.';
+
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
-          detail: 'Usuario o contraseña incorrectos.',
+          detail,
         });
       },
     });

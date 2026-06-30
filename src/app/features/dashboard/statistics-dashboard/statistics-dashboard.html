@@ -1,0 +1,62 @@
+<section class="statistics-dashboard">
+    <div class="dashboard-header">
+        <div>
+            <h1>Estadísticas</h1>
+            <p>Visualizá la actividad de publicaciones y comentarios.</p>
+        </div>
+    </div>
+
+    <form class="filters-card app-card" [formGroup]="filtersForm" (ngSubmit)="loadStatistics()">
+        <div class="field">
+            <label>Desde</label>
+            <input type="date" formControlName="from" />
+        </div>
+
+        <div class="field">
+            <label>Hasta</label>
+            <input type="date" formControlName="to" />
+        </div>
+
+        <button style="width: 150px;" pButton type="submit">
+            Actualizar
+        </button>
+    </form>
+
+
+    @if (loading()) {
+    <div class="loading-state app-card">
+        <i class="pi pi-spin pi-spinner"></i>
+
+        <h2>Cargando estadísticas...</h2>
+
+        <p>Obteniendo información del sistema.</p>
+    </div>
+    } @else {
+    <div class="charts-grid">
+        <article class="chart-card app-card">
+            <h2>Publicaciones por usuario</h2>
+
+            @if (postsByUserData()) {
+            <p-chart type="bar" [data]="postsByUserData()" />
+            }
+        </article>
+
+        <article class="chart-card app-card">
+            <h2>Comentarios por fecha</h2>
+
+            @if (commentsOverTimeData()) {
+            <p-chart type="line" [data]="commentsOverTimeData()" />
+            }
+        </article>
+
+        <article class="chart-card app-card chart-card-wide">
+            <h2>Comentarios por publicación</h2>
+
+            @if (commentsByPostData()) {
+            <p-chart type="pie" [data]="commentsByPostData()" />
+            }
+        </article>
+    </div>
+    }
+
+</section>
